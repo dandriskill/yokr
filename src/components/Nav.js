@@ -14,7 +14,7 @@ const Nav = ({
       <img src={eggy} alt="eggy" />
       <h2>Yokr.</h2>
     </div>
-    <div>
+    <div className="nav-links">
       <button
         className="no-border"
         onClick={() => history.push('/philosophy')}

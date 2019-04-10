@@ -1,8 +1,13 @@
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 20px 10%;
+}
+
+.nav .nav-links button {
+  margin: 10px;
 }
 
 .brand {
@@ -10,9 +15,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin: 10px;
 }
 
 .brand img {
   width: 30px;
   margin-right: 3px;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    justify-content: space-between;
+  }
+
 }
