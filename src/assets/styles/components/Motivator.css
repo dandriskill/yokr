@@ -1,0 +1,37 @@
+.motivator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.motivator h2 {
+  cursor: text;
+  padding: 5px 10px;
+}
+
+.motivator h2:hover {
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
+}
+
+#motivator-input {
+  border: 1px solid black;
+  border-radius: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px 5px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  #motivator-input {
+    width: 500px;
+  }
+}
+
+#motivator-instructions {
+  margin-top: 10px;
+}

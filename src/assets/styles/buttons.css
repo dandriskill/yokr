@@ -1,0 +1,57 @@
+button {
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin-left: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+button.small {
+  border: 2px solid black;
+  font-size: 12px;
+  padding: 2px 3px;
+  margin-left: 10px;
+}
+
+button.ghost {
+  background-color: white;
+  color: black;
+}
+
+button.ghost:hover {
+  background-color: black;
+  color: white;
+}
+
+button.outlined {
+  background-color: Transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+button.outlined:hover {
+  background-color: white;
+  color: black;
+}
+
+button.black {
+  background-color: black;
+  color: white;
+}
+
+button.no-border {
+  border: none;
+  background-color: Transparent;
+  color: black;
+}
+
+button.no-border:hover {
+  text-decoration: underline;
+}
+
+button.submit {
+  border-radius: 0px 5px 5px 0px;
+}

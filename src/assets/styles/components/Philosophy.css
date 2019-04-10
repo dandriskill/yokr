@@ -1,0 +1,27 @@
+.philosophy {
+  padding: 20px 10%;
+  text-align: left;
+  height: auto;
+}
+
+.philo-section {
+  padding-bottom: 20px;
+}
+
+.philosophy h2 {
+  margin-bottom: 10px;
+}
+
+.philosophy h4 {
+  margin-bottom: 10px;
+}
+
+.philosophy p {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .philosophy {
+    padding: 20px 20%;
+  }
+}

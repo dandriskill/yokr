@@ -1,0 +1,23 @@
+@import './fonts.css';
+@import './buttons.css';
+@import './input.css';
+@import './components/Nav.css';
+@import './components/SignUp.css';
+@import './components/Login.css';
+@import './components/Landing.css';
+@import './components/Dashboard.css';
+@import './components/Motivator.css';
+@import './components/Goals.css';
+@import './components/Philosophy.css';
+@import './components/Footer.css';
+
+.app, #root {
+  height: 100%;
+}
+
+.app-inner {
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

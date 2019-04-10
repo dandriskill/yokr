@@ -1,0 +1,28 @@
+.goals {
+  display: flex;
+  justify-content: center;
+}
+
+.goals-list {
+  list-style-type: none;
+  text-align: left;
+  width: 600px;
+}
+
+.goal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.goal .goal-button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  max-height: 30px;
+}

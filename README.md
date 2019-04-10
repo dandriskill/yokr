@@ -1,4 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Yokr
+This daily goal planner is NOT a mindless todo list app. It is loosely modeled on the OKR format of getting things done.
+See [OKRs explained here](https://7geese.com/okr-objectives-and-key-results-faqs/)
+
+The idea is for you to become more 'outcome focused' rather than 'task focused,' thereby increasing your sense of purpose, direction, and happiness. Higher levels of motivation and productivity follow.
+
+Begin by defining your primary motivator, and update it as needed. Next, you will plan for specific outcomes you want accomplished that day, as opposed to simply listing tasks that need to be done.
+
+The goal of this app is to serve as a soft personal accountability and focus tool. It's not designed to be pushy.
 
 ## Available Scripts
 
