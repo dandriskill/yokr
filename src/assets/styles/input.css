@@ -12,7 +12,21 @@
 .field {
   padding: 0;
   margin: 0;
-  width: 500px;
+  width: 200px;
+}
+
+@media (min-width: 480px) {
+  .field {
+    padding: 0;
+    margin: 0;
+    width: 300px;
+  }
+}
+
+.add-goal-field {
+  padding: 0;
+  margin: 0;
+  width: 400px;
 }
 
 input {

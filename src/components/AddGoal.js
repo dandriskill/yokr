@@ -39,7 +39,7 @@ const AddGoal = ({ addGoal }) => (
     >
       <Form autoComplete="off">
         <div className="field-container">
-          <div className="field">
+          <div className="add-goal-field">
             <Field
               type="text"
               name="goal"
