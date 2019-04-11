@@ -15,8 +15,4 @@ export const updateEmail = (user, email) =>
     .catch(() => console.log('Email update failed.'));
 
 export const resetPassword = email =>
-  firebaseAuth().sendPasswordResetEmail(email).then(() => {
-    alert('Reset email sent!')
-  }).catch((error) => {
-    alert(error);
-  });
+  firebaseAuth().sendPasswordResetEmail(email);

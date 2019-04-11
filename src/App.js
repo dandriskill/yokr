@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
 import Login from './components/Login';
+import ResetPassword from './components/ResetPassword';
 import SignUp from './components/SignUp';
 import Nav from './components/Nav';
 import AuthNav from './components/AuthNav';
@@ -21,8 +22,10 @@ import {
   changeGoalStatus,
 } from './services/firebase/helpers/db';
 import {
+  login,
   logout,
   updateEmail,
+  resetPassword,
 } from './services/firebase/helpers/auth';
 import { firebaseAuth } from './services/firebase/config';
 import { database } from './services/firebase/config';
@@ -216,7 +219,17 @@ class App extends Component {
                 path="/login"
                 component={Login}
                 authed={authed}
-                deezProps={{}}
+                deezProps={{
+                  login,
+                }}
+              />
+              <PublicRoute
+                path="/reset-password"
+                component={ResetPassword}
+                authed={authed}
+                deezProps={{
+                  resetPassword
+                }}
               />
               <PrivateRoute
                 path="/dashboard"

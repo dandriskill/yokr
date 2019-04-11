@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from '../services/firebase/helpers/auth';
+import { withRouter } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -10,7 +10,7 @@ const initialValues = {
   passwordConfirmation: '',
 };
 
-const signUpSchema = Yup.object().shape({
+const loginSchema = Yup.object().shape({
   email: Yup
     .string()
     .min(2, 'Too short!')
@@ -25,12 +25,12 @@ const signUpSchema = Yup.object().shape({
 
 const trim = input => input.trim();
 
-const Login = () => (
+const Login = ({ login, history }) => (
   <div className="login">
     <h1>Log In</h1>
     <Formik
       initialValues={initialValues}
-      validationSchema={signUpSchema}
+      validationSchema={loginSchema}
       onSubmit={({ email, password }, { resetForm, setSubmitting }) => {
         const em = trim(email);
         const pw = trim(password);
@@ -69,7 +69,13 @@ const Login = () => (
         </Form>
       )}
     </Formik>
+    <button
+      onClick={() => history.push('/reset-password')}
+      className="no-border lightweight"
+    >
+      Reset Password
+    </button>
   </div>
 );
 
-export default Login;
+export default withRouter(Login);

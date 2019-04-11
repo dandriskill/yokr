@@ -52,6 +52,11 @@ button.no-border:hover {
   text-decoration: underline;
 }
 
+button.lightweight {
+  font-weight: 300;
+  margin-top: 20px;
+}
+
 button.submit {
   border-radius: 0px 5px 5px 0px;
 }
