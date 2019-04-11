@@ -2,11 +2,13 @@
   text-align: center;
 }
 
-.day h4 {
+.day p {
   border-radius: 50px;
-  width: 150px;
+  width: 100px;
   background-color: black;
   color: white;
-  padding: 5px;
-  margin: 30px auto 50px;
+  padding: 3px;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 12px;
 }

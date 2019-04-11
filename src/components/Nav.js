@@ -11,8 +11,10 @@ const Nav = ({
       className="brand"
       onClick={() => history.push('/')}
     >
-      <img src={eggy} alt="eggy" />
-      <h2>Yokr.</h2>
+      <div className="brand-inner">
+        <img src={eggy} alt="eggy" />
+        <h2>Yokr.</h2>
+      </div>
     </div>
     <div className="nav-links">
       <button

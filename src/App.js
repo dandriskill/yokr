@@ -9,7 +9,6 @@ import SignUp from './components/SignUp';
 import Nav from './components/Nav';
 import AuthNav from './components/AuthNav';
 import Landing from './components/Landing';
-import Day from './components/Day';
 import Dashboard from './components/Dashboard';
 import Philosophy from './components/Philosophy';
 import Profile from './components/Profile';
@@ -207,7 +206,6 @@ class App extends Component {
       <div className="app">
         <Router>
           {authed ? <AuthNav day={day} logout={handleLogout} /> : <Nav />}
-          <Day day={day} />
           <Switch>
             <PublicRoute
               exact
