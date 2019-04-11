@@ -45,7 +45,6 @@ button.black {
 button.no-border {
   border: none;
   background-color: Transparent;
-  color: black;
 }
 
 button.no-border:hover {

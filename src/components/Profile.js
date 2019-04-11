@@ -75,6 +75,12 @@ const Profile = ({
           </Form>
         )}
       </Formik>
+      <button
+        onClick={() => {}}
+        className="no-border lightweight"
+      >
+        Delete Account
+      </button>
     </div>
   );
 }
