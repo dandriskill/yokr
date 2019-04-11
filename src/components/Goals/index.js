@@ -4,14 +4,18 @@ import Goal from './Goal';
 const Goals = ({ goals, deleteGoal, changeGoalStatus }) => (
   <div className="goals">
     <ul className="goals-list">
-      {goals.map(goal =>
-        <Goal
-          key={goal.id}
-          goal={goal}
-          deleteGoal={deleteGoal}
-          changeGoalStatus={changeGoalStatus}
-        />
-      )}
+      {(goals.length > 0) ?
+        goals.map(goal =>
+          <Goal
+            key={goal.id}
+            goal={goal}
+            deleteGoal={deleteGoal}
+            changeGoalStatus={changeGoalStatus}
+          />
+        ) : (
+          <p style={{ 'textAlign': 'center' }}>Add some goals!</p>
+        )
+      }
     </ul>
   </div>
 );

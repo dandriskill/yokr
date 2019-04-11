@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
@@ -20,6 +21,7 @@ import {
   writeUserMotivator,
   writeUserGoals,
   changeGoalStatus,
+  newDay,
 } from './services/firebase/helpers/db';
 import {
   login,
@@ -34,6 +36,7 @@ class App extends Component {
   state = {
     authed: false,
     loading: true,
+    day: moment().format('Do MMMM YYYY'),
     user: '',
     email: '',
     name: '',
@@ -87,7 +90,9 @@ class App extends Component {
       .once('value', snapshot => {
         const s = snapshot.val();
         if (s) {
-          this.setState({ goals: s.g });
+          const goals = s.g.filter(g => g.day === this.state.day);
+          this.setState({ goals });
+          newDay(userId, goals);
         }
       });
   }
@@ -179,6 +184,7 @@ class App extends Component {
       state: {
         authed,
         loading,
+        day,
         user,
         email,
         name,
@@ -236,6 +242,7 @@ class App extends Component {
                 component={Dashboard}
                 authed={authed}
                 deezProps={{
+                  day,
                   user,
                   name,
                   motivator,

@@ -18,18 +18,18 @@ const goalSchema = Yup.object().shape({
 
 const formatInput = input => replace(input.trim(), /"/g, "'");
 
-const AddGoal = ({ addGoal }) => (
+const AddGoal = ({ day, addGoal }) => (
   <div className="add-goal">
     <Formik
       initialValues={initialValues}
       validationSchema={goalSchema}
       onSubmit={({ goal }, { resetForm, setSubmitting }) => {
         if (goal) {
-          // Set in database here
           const yokr = {
             goal: formatInput(goal),
             complete: false,
             id: uuid(),
+            day,
           };
           addGoal(yokr);
           setSubmitting(false);

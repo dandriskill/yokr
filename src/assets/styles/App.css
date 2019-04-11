@@ -6,6 +6,7 @@
 @import './components/Login.css';
 @import './components/Landing.css';
 @import './components/Dashboard.css';
+@import './components/Day.css';
 @import './components/Motivator.css';
 @import './components/Goals.css';
 @import './components/Philosophy.css';
@@ -21,6 +22,6 @@
 }
 
 .loader {
-  margin-top: 10%;
+  margin-top: 5%;
   width: 200px;
 }
