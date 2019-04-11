@@ -35,7 +35,7 @@ const Login = () => (
         const em = trim(email);
         const pw = trim(password);
         login(em, pw)
-          .catch(e => alert(e));
+          .catch(e => alert('Incorrect email or password.'));
         setSubmitting(false);
       }}
     >

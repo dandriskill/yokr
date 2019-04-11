@@ -12,6 +12,7 @@ import Philosophy from './components/Philosophy';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
 import './assets/styles/App.css';
+import loader from './assets/images/loader.gif';
 
 import {
   writeUserName,
@@ -19,8 +20,10 @@ import {
   writeUserGoals,
   changeGoalStatus,
 } from './services/firebase/helpers/db';
-// import { updateEmail } from '../services/firebase/helpers/auth';
-import { logout } from './services/firebase/helpers/auth';
+import {
+  logout,
+  updateEmail,
+} from './services/firebase/helpers/auth';
 import { firebaseAuth } from './services/firebase/config';
 import { database } from './services/firebase/config';
 
@@ -44,7 +47,7 @@ class App extends Component {
           this.setState({
             authed: true,
             loading: false,
-            user: user,
+            user,
             email: user.email,
           });
           this.populateUserData(user.uid);
@@ -98,6 +101,11 @@ class App extends Component {
       goals: [],
     });
     logout();
+  }
+
+  handleUpdateEmail = email => {
+    updateEmail(this.state.user, email);
+    this.setState({ email });
   }
 
   handleIsUpdatingMotivator = () => {
@@ -176,6 +184,7 @@ class App extends Component {
         goals,
       },
       handleLogout,
+      handleUpdateEmail,
       handleIsUpdatingMotivator,
       handleChangeMotivator,
       handleAddGoal,
@@ -184,7 +193,7 @@ class App extends Component {
       handleChangeName,
     } = this;
 
-    return loading === true ? <h1 className="loading">Loading</h1> :(
+    return loading === true ? <img src={loader} alt="loader" className="loader" /> : (
       <div className="app">
         <Router>
           {authed ? <AuthNav logout={handleLogout} /> : <Nav />}
@@ -234,6 +243,7 @@ class App extends Component {
                   user,
                   name,
                   email,
+                  handleUpdateEmail,
                   handleChangeName,
                 }}
               />

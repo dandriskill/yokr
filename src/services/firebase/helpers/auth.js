@@ -9,8 +9,14 @@ export const logout = () =>
 export const login = (email, pw) =>
   firebaseAuth().signInWithEmailAndPassword(email, pw);
 
-// export const updateEmail = (user, email) =>
-//   user.updateEmail(email);
+export const updateEmail = (user, email) =>
+  user.updateEmail(email)
+    .then(() => console.log('Email successfully updated.'))
+    .catch(() => console.log('Email update failed.'));
 
 export const resetPassword = email =>
-  firebaseAuth().sendPasswordResetEmail(email);
+  firebaseAuth().sendPasswordResetEmail(email).then(() => {
+    alert('Reset email sent!')
+  }).catch((error) => {
+    alert(error);
+  });

@@ -19,3 +19,8 @@
 .app-inner {
   margin-top: 4%;
 }
+
+.loader {
+  margin-top: 10%;
+  width: 200px;
+}
