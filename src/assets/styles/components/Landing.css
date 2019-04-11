@@ -1,16 +1,28 @@
 .landing {
-  height: 75%;
-  padding: 0 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 5% 10% 10% 10%;
+}
+
+.landing-image {
+  border-radius: 5px;
+  width: 100%;
 }
 
 .landing h1 {
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .landing p {
   margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .landing-image {
+    width: 600px;
+  }
+
+  .landing h1 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
 }
