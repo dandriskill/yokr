@@ -5,12 +5,14 @@
   padding: 10px;
 }
 
-.motivator h2 {
+.motivator-text {
   cursor: text;
   padding: 5px 10px;
+  font-size: 1.75em;
+  max-width: 800px;
 }
 
-.motivator h2:hover {
+.motivator-text:hover {
   -webkit-box-shadow:inset 0px 0px 0px 1px black;
   -moz-box-shadow:inset 0px 0px 0px 1px black;
   box-shadow:inset 0px 0px 0px 1px black;
@@ -19,7 +21,7 @@
 #motivator-input {
   border: 1px solid black;
   border-radius: 0;
-  font-size: 1.5em;
+  font-size: 1.75em;
   font-weight: bold;
   text-align: center;
   padding: 5px 5px;

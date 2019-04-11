@@ -14,7 +14,13 @@ const Motivator = ({
       />
     ) : (
       <div className="motivator">
-        <h2 title="Update motivator" onClick={() => updateMotivator()}>{motivator}</h2>
+        <h1
+          className="motivator-text"
+          title="Update motivator"
+          onClick={() => updateMotivator()}
+        >
+          {motivator}
+        </h1>
       </div>
   )
 );

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import Day from './Day';
 import Motivator from './Motivator';
 import Goals from './Goals';
 import AddGoal from './AddGoal';
@@ -21,8 +20,7 @@ const Dashboard = ({
   <section className="dashboard">
     {(name && motivator && goals) ? (
         <Fragment>
-          <Day day={day} />
-          <h3>{`${name}, your motivation is`}</h3>
+          <h3>{name},&nbsp;your motivation&nbsp;is</h3>
           <Motivator
               updateMotivator={handleIsUpdatingMotivator}
               changeMotivator={handleChangeMotivator}

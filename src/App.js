@@ -9,6 +9,7 @@ import SignUp from './components/SignUp';
 import Nav from './components/Nav';
 import AuthNav from './components/AuthNav';
 import Landing from './components/Landing';
+import Day from './components/Day';
 import Dashboard from './components/Dashboard';
 import Philosophy from './components/Philosophy';
 import Profile from './components/Profile';
@@ -205,75 +206,74 @@ class App extends Component {
     return loading === true ? <img src={loader} alt="loader" className="loader" /> : (
       <div className="app">
         <Router>
-          {authed ? <AuthNav logout={handleLogout} /> : <Nav />}
-          <div className="app-inner">
-            <Switch>
-              <PublicRoute
-                exact
-                path="/"
-                component={Landing}
-                authed={authed}
-                deezProps={{}}
-              />
-              <PublicRoute
-                path="/signup"
-                component={SignUp}
-                authed={authed}
-                deezProps={{}}
-              />
-              <PublicRoute
-                path="/login"
-                component={Login}
-                authed={authed}
-                deezProps={{
-                  login,
-                }}
-              />
-              <PublicRoute
-                path="/reset-password"
-                component={ResetPassword}
-                authed={authed}
-                deezProps={{
-                  resetPassword
-                }}
-              />
-              <PrivateRoute
-                path="/dashboard"
-                component={Dashboard}
-                authed={authed}
-                deezProps={{
-                  day,
-                  user,
-                  name,
-                  motivator,
-                  isUpdatingMotivator,
-                  goals,
-                  handleIsUpdatingMotivator,
-                  handleChangeMotivator,
-                  handleAddGoal,
-                  handleDeleteGoal,
-                  handleChangeGoalStatus,
-                }}
-              />
-              <PrivateRoute
-                path="/profile"
-                component={Profile}
-                authed={authed}
-                deezProps={{
-                  user,
-                  name,
-                  email,
-                  handleUpdateEmail,
-                  handleChangeName,
-                }}
-              />
-              <Route
-                exact
-                path="/philosophy"
-                component={Philosophy}
-              />
-            </Switch>
-          </div>
+          {authed ? <AuthNav day={day} logout={handleLogout} /> : <Nav />}
+          <Day day={day} />
+          <Switch>
+            <PublicRoute
+              exact
+              path="/"
+              component={Landing}
+              authed={authed}
+              deezProps={{}}
+            />
+            <PublicRoute
+              path="/signup"
+              component={SignUp}
+              authed={authed}
+              deezProps={{}}
+            />
+            <PublicRoute
+              path="/login"
+              component={Login}
+              authed={authed}
+              deezProps={{
+                login,
+              }}
+            />
+            <PublicRoute
+              path="/reset-password"
+              component={ResetPassword}
+              authed={authed}
+              deezProps={{
+                resetPassword
+              }}
+            />
+            <PrivateRoute
+              path="/dashboard"
+              component={Dashboard}
+              authed={authed}
+              deezProps={{
+                day,
+                user,
+                name,
+                motivator,
+                isUpdatingMotivator,
+                goals,
+                handleIsUpdatingMotivator,
+                handleChangeMotivator,
+                handleAddGoal,
+                handleDeleteGoal,
+                handleChangeGoalStatus,
+              }}
+            />
+            <PrivateRoute
+              path="/profile"
+              component={Profile}
+              authed={authed}
+              deezProps={{
+                user,
+                name,
+                email,
+                handleUpdateEmail,
+                handleChangeName,
+              }}
+            />
+            <Route
+              exact
+              path="/philosophy"
+              component={Philosophy}
+            />
+          </Switch>
         </Router>
         <Footer />
       </div>
