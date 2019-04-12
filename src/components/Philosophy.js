@@ -46,6 +46,9 @@ const Philosophy = () => (
       <p>
         Break your efforts into manageable, daily chunks. To focus on doing it 'one day at a time' is not just a saying, but wise counsel given throughout history, because it actually works!
       </p>
+      <p>
+        Yokr will reset your goals dashboard each day. 
+      </p>
     </div>
   </div>
 );
