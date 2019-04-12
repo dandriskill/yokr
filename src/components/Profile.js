@@ -78,6 +78,7 @@ const Profile = ({
       <button
         onClick={() => {}}
         className="no-border lightweight"
+        title="Currently unavailable"
       >
         Delete Account
       </button>

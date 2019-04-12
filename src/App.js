@@ -35,6 +35,7 @@ import { database } from './services/firebase/config';
 class App extends Component {
   state = {
     authed: false,
+    verified: false,
     loading: true,
     day: moment().format('Do MMMM YYYY'),
     user: '',
@@ -50,8 +51,14 @@ class App extends Component {
     this.removeListener = firebaseAuth()
       .onAuthStateChanged(user => {
         if (user) {
+          if(!user.emailVerified){
+            user.sendEmailVerification().then(() => {
+              console.log("Email verification sent to user.");
+            });
+          }
           this.setState({
             authed: true,
+            verified: user.emailVerified,
             loading: false,
             user,
             email: user.email,
