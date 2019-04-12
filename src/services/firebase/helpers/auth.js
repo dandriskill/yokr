@@ -1,4 +1,4 @@
-import { firebaseAuth } from '../config';
+import { firebaseAuth, database } from '../config';
 
 export const auth = (email, pw) =>
   firebaseAuth().createUserWithEmailAndPassword(email, pw);
@@ -16,3 +16,13 @@ export const updateEmail = (user, email) =>
 
 export const resetPassword = email =>
   firebaseAuth().sendPasswordResetEmail(email);
+
+export const deleteUser = user => {
+  user.delete().then(() => {
+    database.ref('goals/' + user.uid).remove();
+    database.ref('motivators/' + user.uid).remove();
+    database.ref('names/' + user.uid).remove();
+  }).catch(error => {
+    alert(error);
+  });
+};

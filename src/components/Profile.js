@@ -8,6 +8,7 @@ const Profile = ({
   email,
   handleUpdateEmail,
   handleChangeName,
+  handleConfirmDeleteUser,
   history
 }) => {
   const initialValues = {
@@ -76,7 +77,7 @@ const Profile = ({
         )}
       </Formik>
       <button
-        onClick={() => {}}
+        onClick={() => handleConfirmDeleteUser()}
         className="no-border lightweight"
         title="Currently unavailable"
       >

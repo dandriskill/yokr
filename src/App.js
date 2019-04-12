@@ -12,7 +12,9 @@ import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
 import Philosophy from './components/Philosophy';
 import Profile from './components/Profile';
+import AreYouSure from './components/AreYouSure';
 import Footer from './components/Footer';
+import Modal from 'react-modal';
 import './assets/styles/App.css';
 import loader from './assets/images/loader.gif';
 
@@ -28,9 +30,12 @@ import {
   logout,
   updateEmail,
   resetPassword,
+  deleteUser,
 } from './services/firebase/helpers/auth';
 import { firebaseAuth } from './services/firebase/config';
 import { database } from './services/firebase/config';
+
+Modal.setAppElement('#root');
 
 class App extends Component {
   state = {
@@ -44,10 +49,10 @@ class App extends Component {
     motivator: '',
     isUpdatingMotivator: false,
     goals: [],
+    modalIsOpen: false,
   }
 
   componentDidMount() {
-    // Check auth
     this.removeListener = firebaseAuth()
       .onAuthStateChanged(user => {
         if (user) {
@@ -186,6 +191,20 @@ class App extends Component {
     this.setState({ name });
   }
 
+  handleConfirmDeleteUser = () => {
+    this.setState({ modalIsOpen: true });
+  }
+
+  handleDeleteUser = () => {
+    deleteUser(this.state.user);
+    this.setState({ modalIsOpen: false });
+    logout();
+  }
+
+  handleCloseModal = () => {
+    this.setState({ modalIsOpen: false });
+  }
+
   render() {
     const {
       state: {
@@ -198,6 +217,7 @@ class App extends Component {
         motivator,
         isUpdatingMotivator,
         goals,
+        modalIsOpen,
       },
       handleLogout,
       handleUpdateEmail,
@@ -207,10 +227,34 @@ class App extends Component {
       handleDeleteGoal,
       handleChangeGoalStatus,
       handleChangeName,
+      handleConfirmDeleteUser,
+      handleDeleteUser,
+      handleCloseModal,
     } = this;
+
+    const modalStyles = {
+      content : {
+        top                   : '30%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)',
+      },
+    };
 
     return loading === true ? <img src={loader} alt="loader" className="loader" /> : (
       <div className="app">
+        <Modal
+          isOpen={modalIsOpen}
+          style={modalStyles}
+          contentLabel="Are you sure?"
+        >
+          <AreYouSure
+            deleteUser={handleDeleteUser}
+            closeModal={handleCloseModal}
+          />
+        </Modal>
         <Router>
           {authed ? <AuthNav day={day} logout={handleLogout} /> : <Nav />}
           <Switch>
@@ -271,6 +315,7 @@ class App extends Component {
                 email,
                 handleUpdateEmail,
                 handleChangeName,
+                handleConfirmDeleteUser,
               }}
             />
             <Route
