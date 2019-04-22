@@ -25,4 +25,5 @@
   align-items: center;
   flex-wrap: nowrap;
   max-height: 30px;
+  margin-left: 10px;
 }

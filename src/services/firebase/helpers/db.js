@@ -24,6 +24,12 @@ export const changeGoalStatus = (userId, goalIndex, status) => {
   database.ref().update(updates);
 }
 
+export const editGoal = (userId, goalIndex, goal) => {
+  const updates = {};
+  updates['/goals/' + userId + '/g/' + goalIndex + '/goal'] = goal;
+  database.ref().update(updates);
+}
+
 export const newDay = (userId, goals) => {
   const updates = {};
   updates['/goals/' + userId + '/g/'] = goals;

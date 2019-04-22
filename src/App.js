@@ -10,6 +10,7 @@ import Nav from './components/Nav';
 import AuthNav from './components/AuthNav';
 import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
+import EditGoal from './components/EditGoal';
 import Philosophy from './components/Philosophy';
 import Profile from './components/Profile';
 import AreYouSure from './components/AreYouSure';
@@ -23,6 +24,7 @@ import {
   writeUserMotivator,
   writeUserGoals,
   changeGoalStatus,
+  editGoal,
   newDay,
 } from './services/firebase/helpers/db';
 import {
@@ -50,6 +52,8 @@ class App extends Component {
     isUpdatingMotivator: false,
     goals: [],
     modalIsOpen: false,
+    modalContent: '',
+    currentGoal: null,
   }
 
   componentDidMount() {
@@ -139,19 +143,15 @@ class App extends Component {
     this.setState(() => {
       writeUserMotivator(this.state.user.uid, motivator);
       return ({ motivator });
-    }, () => setTimeout(
-      () => this.handleIsUpdatingMotivator(), 200)
-    );
+    }, () => setTimeout(() => this.handleIsUpdatingMotivator(), 200));
   }
 
   handleAddGoal = goal => {
     this.setState(prevState => {
-      const { goals } = ({
-        goals: [
-          ...prevState.goals,
-          goal,
-        ]
-      });
+      const goals = [
+        ...prevState.goals,
+        goal,
+      ];
       writeUserGoals(this.state.user.uid, goals);
       return ({ goals });
     });
@@ -159,11 +159,7 @@ class App extends Component {
 
   handleDeleteGoal = id => {
     this.setState(prevState => {
-      const { goals } = ({
-        goals: [
-          ...prevState.goals.filter(goal => goal.id !== id),
-        ],
-      });
+      const goals = prevState.goals.filter(goal => goal.id !== id);
       writeUserGoals(this.state.user.uid, goals);
       return ({ goals });
     });
@@ -171,19 +167,36 @@ class App extends Component {
 
   handleChangeGoalStatus = (id, status) => {
     let goalIndex = this.state.goals.findIndex(i => i.id === id);
-    this.setState(prevState => {
-      const { goals } = ({
-        goals: [
-          ...prevState.goals.map(goal => {
-            let g = goal;
-            if (g.id === id) { g.complete = status }
-            return g;
-          }),
-        ],
-      });
-      changeGoalStatus(this.state.user.uid, goalIndex, status);
-      return ({ goals });
+    this.setState(prevState => ({
+      goals: prevState.goals.map(goal => {
+        let g = goal;
+        if (g.id === id) { g.complete = status }
+        return g;
+      }),
+    }), () => changeGoalStatus(this.state.user.uid, goalIndex, status));
+  }
+
+  handleEditGoal = id => {
+    this.setState({
+      modalIsOpen: true,
+      modalContent: 'edit goal',
+      currentGoal: id,
     });
+  }
+
+  handleSubmitGoalEdit = edit => {
+    const id = this.state.currentGoal;
+    const goalIndex = this.state.goals.findIndex(i => i.id === id);
+    this.setState(prevState => ({
+      goals: prevState.goals.map(goal => {
+        let g = goal;
+        if (g.id === id) { g.goal = edit }
+        return g;
+      }),
+      modalIsOpen: false,
+      modalContent: '',
+      currentGoal: null,
+    }), () => editGoal(this.state.user.uid, goalIndex, edit));
   }
 
   handleChangeName = name => {
@@ -192,7 +205,10 @@ class App extends Component {
   }
 
   handleConfirmDeleteUser = () => {
-    this.setState({ modalIsOpen: true });
+    this.setState({
+      modalIsOpen: true,
+      modalContent: 'confirm delete user',
+    });
   }
 
   handleDeleteUser = () => {
@@ -218,6 +234,8 @@ class App extends Component {
         isUpdatingMotivator,
         goals,
         modalIsOpen,
+        modalContent,
+        currentGoal,
       },
       handleLogout,
       handleUpdateEmail,
@@ -226,6 +244,8 @@ class App extends Component {
       handleAddGoal,
       handleDeleteGoal,
       handleChangeGoalStatus,
+      handleEditGoal,
+      handleSubmitGoalEdit,
       handleChangeName,
       handleConfirmDeleteUser,
       handleDeleteUser,
@@ -234,26 +254,36 @@ class App extends Component {
 
     const modalStyles = {
       content : {
-        top                   : '30%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)',
+        top: '30%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
       },
     };
 
-    return loading === true ? <img src={loader} alt="loader" className="loader" /> : (
+    return loading ? <img src={loader} alt="loader" className="loader" /> : (
       <div className="app">
         <Modal
           isOpen={modalIsOpen}
           style={modalStyles}
-          contentLabel="Are you sure?"
+          contentLabel="Content"
+          onRequestClose={handleCloseModal}
+          shouldCloseOnOverlayClick={true}
         >
-          <AreYouSure
-            deleteUser={handleDeleteUser}
-            closeModal={handleCloseModal}
-          />
+          {modalContent === 'confirm delete user' &&
+            <AreYouSure
+              deleteUser={handleDeleteUser}
+              closeModal={handleCloseModal}
+            />
+          }
+          {modalContent === 'edit goal' &&
+            <EditGoal
+              text={goals.find(e => e.id === currentGoal).goal}
+              handleSubmit={handleSubmitGoalEdit}
+            />
+          }
         </Modal>
         <Router>
           {authed ? <AuthNav day={day} logout={handleLogout} /> : <Nav />}
@@ -303,6 +333,7 @@ class App extends Component {
                 handleAddGoal,
                 handleDeleteGoal,
                 handleChangeGoalStatus,
+                handleEditGoal,
               }}
             />
             <PrivateRoute

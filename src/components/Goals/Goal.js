@@ -2,18 +2,20 @@ import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { faCircle, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faCircle, faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
   faTrashAlt,
   faCircle,
   faCheckCircle,
+  faEdit,
 );
 
 const Goal = ({
   goal: { goal, id, complete },
   deleteGoal,
   changeGoalStatus,
+  editGoal,
 }) => (
   <li className="goal">
     <p>{goal}</p>
@@ -33,6 +35,12 @@ const Goal = ({
           <FontAwesomeIcon icon={['far', 'circle']} size="lg" />
         </button>
       }
+      <button
+        className="small no-border text-lightweight"
+        onClick={() => editGoal(id)}
+      >
+        <FontAwesomeIcon icon={['far', 'edit']} size="lg" />
+      </button>
       <button
         className="small no-border"
         onClick={() => deleteGoal(id)}

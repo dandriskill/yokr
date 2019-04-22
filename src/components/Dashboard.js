@@ -16,6 +16,7 @@ const Dashboard = ({
   handleAddGoal,
   handleDeleteGoal,
   handleChangeGoalStatus,
+  handleEditGoal,
 }) => (
   <section className="dashboard">
     {(name && motivator && goals) ? (
@@ -32,6 +33,7 @@ const Dashboard = ({
             goals={goals}
             deleteGoal={handleDeleteGoal}
             changeGoalStatus={handleChangeGoalStatus}
+            editGoal={handleEditGoal}
           />
         </Fragment>
       ) : <img src={loader} alt="loader" className="loader" />

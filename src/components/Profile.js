@@ -51,7 +51,7 @@ const Profile = ({
             <div className="form-inner-container">
               <div className="field">
                 <Field
-                  type="name"
+                  type="text"
                   name="name"
                   component="input"
                   className="form-input"

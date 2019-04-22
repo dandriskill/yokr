@@ -51,6 +51,10 @@ button.no-border:hover {
   text-decoration: underline;
 }
 
+button.text-lightweight {
+  font-weight: 300;
+}
+
 button.lightweight {
   font-weight: 300;
   margin-top: 20px;
