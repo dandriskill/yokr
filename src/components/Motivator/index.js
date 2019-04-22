@@ -16,7 +16,7 @@ const Motivator = ({
       <div className="motivator">
         <h1
           className="motivator-text"
-          title="Update motivator"
+          title="Edit motivator"
           onClick={() => updateMotivator()}
         >
           {motivator}

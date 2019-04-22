@@ -23,6 +23,7 @@ const Goal = ({
       {complete ?
         <button
           className="small no-border"
+          title="Mark incomplete"
           onClick={() => changeGoalStatus(id, false)}
         >
           <FontAwesomeIcon icon="check-circle" size="lg" />
@@ -30,6 +31,7 @@ const Goal = ({
         :
         <button
           className="small no-border"
+          title="Mark complete"
           onClick={() => changeGoalStatus(id, true)}
         >
           <FontAwesomeIcon icon={['far', 'circle']} size="lg" />
@@ -37,12 +39,14 @@ const Goal = ({
       }
       <button
         className="small no-border text-lightweight"
+        title="Edit goal"
         onClick={() => editGoal(id)}
       >
         <FontAwesomeIcon icon={['far', 'edit']} size="lg" />
       </button>
       <button
         className="small no-border"
+        title="Delete goal"
         onClick={() => deleteGoal(id)}
       >
         <FontAwesomeIcon icon={['far', 'trash-alt']} size="lg" />
