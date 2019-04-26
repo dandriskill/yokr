@@ -73,6 +73,12 @@ class App extends Component {
             email: user.email,
           });
           this.populateUserData(user.uid);
+          // this.interval = setInterval(
+          //   () => {
+          //     this.populateUserData(user.uid);
+          //   },
+          //   1000
+          // );
         } else {
           this.setState({
             authed: false,
@@ -83,6 +89,7 @@ class App extends Component {
   }
 
   componentWillUnmount () {
+    // clearInterval(this.interval);
     this.removeListener();
   }
 

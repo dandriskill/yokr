@@ -1,3 +1,7 @@
+.editGoal {
+  width: 200px;
+}
+
 .editGoal h3 {
   margin-bottom: 20px;
 }
@@ -14,7 +18,17 @@
   font-size: 16px;
   outline: none;
   resize: none;
-  height: 50px;
-  width: 80%;
+  height: 100px;
+  width: 90%;
   margin: 0;
+}
+
+@media (min-width: 480px) {
+  .editGoal {
+    width: 350px;
+  }
+
+  .edit-goal-input {
+    width: 95%;
+  }
 }
