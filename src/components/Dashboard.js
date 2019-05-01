@@ -23,11 +23,11 @@ const Dashboard = ({
         <Fragment>
           <h3>{name},&nbsp;your motivation&nbsp;is</h3>
           <Motivator
-              updateMotivator={handleIsUpdatingMotivator}
-              changeMotivator={handleChangeMotivator}
-              isUpdating={isUpdatingMotivator}
-              motivator={motivator}
-            />
+            updateMotivator={handleIsUpdatingMotivator}
+            changeMotivator={handleChangeMotivator}
+            isUpdating={isUpdatingMotivator}
+            motivator={motivator}
+          />
           <Goals
             user={user.uid}
             goals={goals}
